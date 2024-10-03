@@ -1,0 +1,23 @@
+version: "3.8"
+
+services:
+
+    frontend:
+      build: ./frontend
+      ports:
+        - 3000:80
+
+    backend:
+      build: ./backend
+      ports:
+        - 7000:6000
+
+    dbservice:
+      image: mongo:4.2
+      ports:
+        - 27017:27017
+      volumes:
+        - classactivityvolume:/data/db
+
+volumes:
+  classactivityvolume:

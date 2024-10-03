@@ -1,10 +1,12 @@
 from flask import Flask, jsonify, request
 from flask_pymongo import PyMongo
+from flask_cors import CORS
 
 server = Flask(__name__)
+CORS(server)
 
 # MongoDB configuration
-server.config["MONGO_URI"] = "mongodb://localhost:27017/classtask4"
+server.config["MONGO_URI"] = "mongodb://dbservice:27017/classtask4"
 mongo = PyMongo(server)
 
 @server.route('/add_user', methods=['POST'])
@@ -25,4 +27,4 @@ def get_users():
     return jsonify({"users": result}), 200
 
 if __name__ == '__main__':
-    server.run(debug=True, host="0.0.0.0", port=7000)
+    server.run(debug=True, host="0.0.0.0", port=6000)
